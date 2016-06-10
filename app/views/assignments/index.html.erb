@@ -60,10 +60,10 @@
         <% @assignments.where(complete_status: 1).find_each do |assignment| %>
         <tr>
           <td><a href="/assignments/update_complete/<%= assignment.id %>" class="btn"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
-          <td><%= assignment.date_due %></td>
-          <td><%= assignment.name %></td>
-          <td><%= assignment.description %></td>
-          <td><%= assignment.project.name %></td>
+          <td><s><%= assignment.date_due %></s></td>
+          <td><s><%= assignment.name %></s></td>
+          <td><s><%= assignment.description %></s></td>
+          <td><s><%= assignment.project.name %></s></td>
           <td><a href="<%= assignment.doc_link %>"><i class="fa fa-external-link" aria-hidden="true"></i></td>
             <td>
 

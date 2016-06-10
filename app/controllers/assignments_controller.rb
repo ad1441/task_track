@@ -37,7 +37,6 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
 
     @assignment.doc_link = params[:doc_link]
-    @assignment.complete_status = 0
     @assignment.date_due = Chronic.parse(params[:date_due])
     @assignment.date_start = Chronic.parse(params[:date_start])
     @assignment.description = params[:description]
@@ -45,7 +44,7 @@ class AssignmentsController < ApplicationController
     @assignment.project_id = params[:project_id]
 
     if @assignment.save
-      redirect_to :back, :notice => "Assignment updated successfully."
+      redirect_to "/assignments/", :notice => "Assignment updated successfully."
     else
       render 'edit'
     end
