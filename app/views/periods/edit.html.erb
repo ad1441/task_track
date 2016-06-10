@@ -40,7 +40,7 @@
         </label>
           <div class='input-group date' id='datetimepicker1'>
 
-            <input type='text' class="form-control" name="date_start" id="date_start" placeholder="<%= @period.date_start %>">
+            <input type='text' class="form-control" name="date_start" id="date_start">
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -55,8 +55,10 @@
   </div>
 </div>
 
-<script type="text/javascript">
+<script>
   $(function () {
-    $('#datetimepicker1').datetimepicker();
+    $('#datetimepicker1').datetimepicker({
+      defaultDate: "<%= @period.date_start %>"
+    });
   });
 </script>

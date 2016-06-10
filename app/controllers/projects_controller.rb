@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all.sort{|a,b| a.period.date_start <=> b.period.date_start}
+    @projects = current_user.projects.all.sort{|a,b| a.period.date_start <=> b.period.date_start}
     @project = Project.new
   end
 

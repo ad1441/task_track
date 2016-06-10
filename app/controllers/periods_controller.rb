@@ -1,6 +1,6 @@
 class PeriodsController < ApplicationController
   def index
-    @periods = Period.all.sort{|a,b| a.date_start <=> b.date_start}
+    @periods = current_user.periods.sort{|a,b| a.date_start <=> b.date_start}
   end
 
   def show
