@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :periods
   has_many :projects, :through => :periods , :source => :projects
+  has_many :assignments, :through => :projects , :source => :assignments
 
 end
