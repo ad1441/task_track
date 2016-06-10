@@ -1,0 +1,92 @@
+<!-- Validation failure messages -->
+<% if @assignment.errors.any? %>
+  <% @assignment.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Assignment</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_assignment" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+
+
+
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @assignment.name %>">
+      </div>
+
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <input type="text" id="description" name="description" placeholder="Description" class="form-control" value="<%= @assignment.description %>">
+      </div>
+
+      <!-- Label and input for date_due -->
+
+
+      <label for="date_due" class="control-label">
+        Due date
+      </label>
+        <div class='input-group date' id='datetimepicker1'>
+
+          <input type='text' class="form-control" name="date_due" id="date_due" placeholder="Due date">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+
+
+      <div class="form-group">
+      <label for="project_id" class="control-label">
+          Project
+        </label>
+
+        <%= select_tag(:project_id, options_from_collection_for_select(Project.all, :id, :name, @assignment.project_id), :class => "form-control") %>
+
+        <p>OR <a href="/projects/new">Create a New Project</a></p>
+
+      </div>
+
+      <!-- Label and input for doc_link -->
+      <div class="form-group">
+        <label for="doc_link" class="control-label">
+          Doc link
+        </label>
+
+        <input type="text" id="doc_link" name="doc_link" placeholder="Doc link" class="form-control" value="<%= @assignment.doc_link %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Assignment
+      </button>
+      or
+      <a href="/assignments">Cancel</a>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>

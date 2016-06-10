@@ -1,0 +1,62 @@
+<!-- Validation failure messages -->
+<% if @period.errors.any? %>
+  <% @period.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Period #<%= @period.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_period/<%= @period.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @period.user_id %>">
+
+        <!-- Label and input for name -->
+        <div class="form-group">
+          <label for="name" class="control-label">
+            Name
+          </label>
+
+          <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @period.name %>">
+        </div>
+
+
+        <!-- Label and input for date_start -->
+
+
+        <label for="date_start" class="control-label">
+          Start date
+        </label>
+          <div class='input-group date' id='datetimepicker1'>
+
+            <input type='text' class="form-control" name="date_start" id="date_start" placeholder="<%= @period.date_start %>">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+
+      <button class="btn btn-warning">
+        Update Period
+      </button>
+      or
+      <a HREF="javascript:javascript:history.go(-1)">Cancel</a>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>
