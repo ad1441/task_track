@@ -6,6 +6,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @incomplete_assignments = @project.assignments.where(complete_status: 0).sort{|a,b| b.date_due <=> a.date_due}
+    @complete_assignments = @project.assignments.where(complete_status: 1).sort{|a,b| b.date_due <=> a.date_due}
   end
 
   def new

@@ -1,6 +1,7 @@
 class AssignmentsController < ApplicationController
   def index
-    @assignments = current_user.assignments
+    @incomplete_assignments = current_user.assignments.where(complete_status: 0).sort{|a,b| b.date_due <=> a.date_due}
+    @complete_assignments = current_user.assignments.where(complete_status: 1).sort{|a,b| b.date_due <=> a.date_due}
     @assignment = Assignment.new
   end
 

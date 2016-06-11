@@ -23,7 +23,7 @@
 
 
 
-      <% @assignments.where(complete_status: 0).find_each do |assignment| %>
+      <% @incomplete_assignments.each do |assignment| %>
       <tr>
         <td><a href="/assignments/update_complete/<%= assignment.id %>" class="btn"><i class="fa fa-square-o" aria-hidden="true"></i></a></td>
         <td><%= assignment.date_due %></td>
@@ -57,7 +57,7 @@
           <th>Actions</th>
         </tr>
 
-        <% @assignments.where(complete_status: 1).find_each do |assignment| %>
+        <% @complete_assignments.each do |assignment| %>
         <tr>
           <td><a href="/assignments/update_complete/<%= assignment.id %>" class="btn"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
           <td><s><%= assignment.date_due %></s></td>
